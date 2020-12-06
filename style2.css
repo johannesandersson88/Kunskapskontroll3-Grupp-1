@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 70rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.main-container{
+    margin: 0 auto;
+    width: 80%;
+    height: 85%;
+    background-image: linear-gradient( rgb(191, 196, 195), rgb(53, 51, 51));
+    padding: 2rem;
+}
+
+.top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: .5rem;
+}
+
+.form-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem;
+}
+
+#form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+}
+
+.submit-button{
+    margin: .5rem;
+    padding: .5rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.scoreboard{
+    width: 30vw;
+    height: 2rem;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-around;
+    margin: 2rem;
+}
+
+
+.gameboard{
+    width: 75%;
+    height: 50%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: .5rem;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.card{
+    width: 9.375rem;
+    height: 9.375rem;
+    border-radius: .3rem;
+    margin: 0 auto;
+}
+
