@@ -20,7 +20,7 @@ const galleryId = '72157717153796791';
 
 
 let time;//time at the beginning of the game
-let firstCard= true;// the variable is used for the stopwatch.checks if the card has been flipped
+let verificationCard= true;// the variable is used for the stopwatch.checks if the card has been flipped
 let idArr = [];//extra-array, which we will use when comparing cards with each other
 let tiles_flipped = 0;
 let score = 0;//number of points at the beginning of the game
@@ -210,12 +210,12 @@ setTimeout(() => {
                        function flipCard(someCard){
                        
                        //if this is the first card turned over
-                        if (firstCard){
+                        if (verificationCard){
                             time = new Date().getTime();
                             stopwatch();;//run function
                         }
                         someCard.classList.add('flip');
-                        firstCard = false;//card was flipped
+                        verificationCard = false;//card was flipped
 
                        }
                        //function that compares the cards
