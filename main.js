@@ -105,7 +105,7 @@ setTimeout(() => {
     ).then(
         function(data){
             console.log(data.photos.photo);
-            startGame(data.photos.photo); //array med fem element
+            startGame(data.photos.photo);
        
         }
     ).catch(
