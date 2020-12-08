@@ -19,8 +19,8 @@ const galleryId = '72157717153796791';
 
 
 
-let time = 0;//time at the beginning of the game
-let running = 0;// variable that tells us that the stopwatch is disabled at the beginning of the game
+let time;//time at the beginning of the game
+let firstCard= true;// the variable is used for the stopwatch.checks if the card has been flipped
 let idArr = [];//extra-array, which we will use when comparing cards with each other
 let tiles_flipped = 0;
 let score = 0;//number of points at the beginning of the game
@@ -51,26 +51,14 @@ Array.prototype.randomCards = function(){
     return arrayRandom;
 }
 
-
+let outputTime;//extra variable to which we will assign the function "setTimeout"
 //stopwatch function
 function stopwatch(){
-	if(running == 1){
-		setTimeout(function(){
-			time++;
-			var mins = Math.floor(time/10/60);
-			var secs = Math.floor(time/10 % 60);
-			var hours = Math.floor(time/10/60/60); 
-		
-			if(mins < 10){
-				mins = "0" + mins;
-			} 
-			if(secs < 10){
-				secs = "0" + secs;
-			}
-			document.getElementById("output").innerHTML = hours + ":" + mins + ":" + secs;
-			stopwatch();
-		},100)
-	}
+    let endTime= new Date().getTime();
+    let diff= endTime-time;
+    let timeElapsed= new Date(diff);
+    document.getElementById("output").innerHTML = timeElapsed.getMinutes()+ "m " + timeElapsed.getSeconds() + "s";
+   outputTime = setTimeout(stopwatch, 1000);
 }
 
 
@@ -175,9 +163,6 @@ setTimeout(() => {
             //each element is assigned a class
             cardElement.setAttribute('class', `card ${arr[i].name}`);
           
-
-           
-
     
             //assign and style photo that we got using the flickr API to each card
             cardElement.style.backgroundImage = "url("+arr[i].address+")";
@@ -223,8 +208,14 @@ setTimeout(() => {
 
                 //function that flips the cards
                        function flipCard(someCard){
+                       
+                       //if the card is turned over for the first time, the stopwatch starts
+                        if (firstCard){
+                            time = new Date().getTime();
+                            stopwatch();;//run function
+                        }
                         someCard.classList.add('flip');
-                        running = 1;//run timewach
+                        firstCard = false;//card was flipped
 
                        }
                        //function that compares the cards
@@ -255,7 +246,7 @@ setTimeout(() => {
 
                                 if(tiles_flipped === arr.length){
                                     console.log("Good Job !!!");
-                                    running = 0;//stop timewatch
+                                    clearTimeout(outputTime);;//stop stopwatch
                                   
                                     containerBottom.style.display = 'block';
                                     bottom.innerText= `You got ${score} points !!!`//message indicating the number of points earned
@@ -287,7 +278,7 @@ setTimeout(() => {
                     
                     
                    
-                        stopwatch();
+                       
                     
                     
                 e.preventDefault();
