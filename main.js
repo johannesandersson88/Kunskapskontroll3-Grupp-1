@@ -209,7 +209,7 @@ setTimeout(() => {
                 //function that flips the cards
                        function flipCard(someCard){
                        
-                       //if the card is turned over for the first time, the stopwatch starts
+                       //if this is the first card turned over
                         if (firstCard){
                             time = new Date().getTime();
                             stopwatch();;//run function
